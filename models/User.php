@@ -10,6 +10,23 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return 'user';
     }
 
+
+
+    /**
+     * @return array the validation rules.
+     */
+    public function rules()
+    {
+        return [
+            // username and password are both required
+            [['username', 'password'], 'required'],
+            // password is validated by validatePassword()
+            ['password', 'validatePassword'],
+        ];
+    }
+
+
+
     /**
      * @inheritdoc
      */
