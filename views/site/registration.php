@@ -41,6 +41,7 @@ echo  $form->field($model, 'username')->textInput(['autofocus' => true])->label(
 </div>
 
 <?php ActiveForm::end(); ?>
+<a href="<?php echo \yii\helpers\Url::to(['site/login'])?>" class="btn btn-primary block full-width m-b">Авторизоваться</a>
 
 
 
