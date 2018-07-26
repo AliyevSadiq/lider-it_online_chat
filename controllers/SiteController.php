@@ -159,14 +159,15 @@ class SiteController extends Controller
             $model->password = Yii::$app->getSecurity()->generatePasswordHash($password);
             $model->role = 'user';
             $check_user = User::find()->where(['username' => $model->username])->count();
-            if ($check_user==0 && (!empty($model->username) || !empty($model->password))){
+            if ($check_user==0 && (!empty($model->username) && !empty($model->password))){
                 if ($model->save()) {
                     return $this->redirect("/admin");
                 }
             }else if($check_user!=0){
                 Yii::$app->session->setFlash('error','Это имя пользователя уже используется.');
                 $model->password ='';
-            }if(empty($model->username) || empty($model->password)){
+            }
+            if(empty($model->username) && empty($model->password)){
                 Yii::$app->session->setFlash('error','Логин и пароль не могут быть пустыми.');
                 $model->password ='';
             }
